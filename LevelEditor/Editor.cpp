@@ -17,8 +17,7 @@ Editor::Editor()
 	{
 		for (int j = 0; j < HEIGHT_COUNT; j++)
 		{
-			tiles[i][j].setType(Tile::empty);
-			tiles[i][j].setPosition(j, i);
+			p_tiles[i][j] = new Empty(i, j);
 		}
 	}
 
@@ -54,6 +53,13 @@ void Editor::setAddSpawnMode()
 
 Editor::~Editor()
 {
+	for (int i = 0; i < WIDTH_COUNT; i++)
+	{
+		for (int j = 0; j < HEIGHT_COUNT; j++)
+		{
+			delete(p_tiles[i][j]);
+		}
+	}
 	delete(p_level);
 }
 
@@ -67,81 +73,148 @@ void Editor::closeLevel()
 
 void Editor::setAddWallMode()
 {
-	curMode = wallMode;
+	curMode = simpleWallMode;
 }
 
 void Editor::tileClicked(int x, int y)
 {
 	switch (curMode)
 	{
-	case wallMode:
-		tiles[x][y].setType(Tile::wall);
-		p_level->setWall(x, y);
+	case simpleWallMode:
+		if (p_tiles[x][y]->getTypeId() != simpleWall)
+		{
+			delete(p_tiles[x][y]);
+			p_tiles[x][y] = new Wall(x, y);
+			p_level->setWall(x, y);
+		}
 		break;
 	case destructibleWallMode:
-		tiles[x][y].setType(Tile::destructibleWall);
-		p_level->setDestructibleWall(x, y);
+		if (p_tiles[x][y]->getTypeId() != destructibleWall)
+		{
+			delete(p_tiles[x][y]);
+			p_tiles[x][y] = new Wall(x, y, true);
+			p_level->setDestructibleWall(x, y);
+		}
 		break;
 	case ladderMode:
-		tiles[x][y].setType(Tile::ladder);
-		p_level->setLadder(x, y);
+		if (p_tiles[x][y]->getTypeId() != ladder)
+		{
+			delete(p_tiles[x][y]);
+			p_tiles[x][y] = new Ladder(x, y);
+			p_level->setLadder(x, y);
+		}
 		break;
 	case spawnMode:
-		for (int i = 0; i < WIDTH_COUNT; i++)
+		if (p_tiles[x][y]->getTypeId() != spawn)
 		{
-			bool isSpawnFound = false;
-			for (int j = 0; j < HEIGHT_COUNT; j++)
+			// delete previous spawn tile
+			for (int i = 0; i < WIDTH_COUNT; i++)
 			{
-				if (tiles[i][j].getType() == Tile::spawn)
+				bool isSpawnFound = false;
+				for (int j = 0; j < HEIGHT_COUNT; j++)
 				{
-					tiles[i][j].setType(Tile::empty);
-					p_level->setEmpty(i, j);
-					isSpawnFound = true;
-					break;
+					if (p_tiles[i][j]->getTypeId() == spawn)
+					{
+						delete(p_tiles[x][y]);
+						p_tiles[x][y] = new Empty(x, y);
+						p_level->setEmpty(x, y);
+						isSpawnFound = true;
+						break;
+					}
 				}
+				if (isSpawnFound)
+					break;
 			}
-			if (isSpawnFound)
-				break;
+			// add new spawn tile
+			delete(p_tiles[x][y]);
+			p_tiles[x][y] = new Wall(x, y);
+			p_level->setSpawn(x, y);
 		}
-		tiles[x][y].setType(Tile::spawn);
-		p_level->setSpawn(x, y);
 		break;
 	case deleteMode:
-		tiles[x][y].setType(Tile::empty);
-		p_level->setEmpty(x, y);
-	}
-	
+		if (p_tiles[x][y]->getTypeId() != empty)
+		{
+			delete(p_tiles[x][y]);
+			p_tiles[x][y] = new Empty(x, y);
+			p_level->setEmpty(x, y);
+		}
+		break;
+	case cursorMode:
+		break;
+	default:
+		break;
+	}	
 }
 
 // ---------------------------------------------------------- //
 
-Editor::Tile::Tile()
+Editor::BasicTile::BasicTile()
 {
-	type = empty;
 }
 
-Editor::Tile::Tile(float x, float y) 
-{
-	type = empty;
-	this->x = x;
-	this->y = y;
-}
-
-void Editor::Tile::setType(e_type type)
-{
-	this->type = type;
-}
-
-void Editor::Tile::setPosition(float x, float y)
+Editor::BasicTile::BasicTile(int x, int y, bool additional)
 {
 	this->x = x;
 	this->y = y;
 }
 
-Editor::Tile::e_type Editor::Tile::getType()
+void Editor::BasicTile::setPosition(int x, int y)
 {
-	return type;
+	this->x = x;
+	this->y = y;
 }
+
+Editor::BasicTile::~BasicTile()
+{
+}
+
+// ---------------------------------------------------------- //
+
+Editor::Empty::Empty(int x, int y) : BasicTile::BasicTile(x, y)
+{
+}
+
+int Editor::Empty::getTypeId()
+{
+	return empty;
+}
+
+// ---------------------------------------------------------- //
+
+Editor::Wall::Wall(int x, int y, bool isDestructible) : BasicTile::BasicTile(x, y, isDestructible)
+{
+	this->isDestructible = isDestructible;
+}
+
+int Editor::Wall::getTypeId()
+{
+	if (isDestructible)
+		return destructibleWall;
+	return simpleWall;
+}
+
+// ---------------------------------------------------------- //
+
+Editor::Ladder::Ladder(int x, int y) : BasicTile::BasicTile(x, y)
+{
+}
+
+int Editor::Ladder::getTypeId()
+{
+	return ladder;
+}
+
+// ---------------------------------------------------------- //
+
+Editor::Spawn::Spawn(int x, int y) : BasicTile::BasicTile(x, y)
+{
+}
+
+int Editor::Spawn::getTypeId()
+{
+	return spawn;
+}
+
 
 // ---------------------------------------------------------- //
 

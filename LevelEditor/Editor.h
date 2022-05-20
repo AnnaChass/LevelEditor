@@ -12,39 +12,61 @@
 class Editor : public wxApp
 {
 public:
-	class Tile
+	enum e_type
+	{
+		empty,
+		simpleWall,
+		destructibleWall,
+		ladder,
+		spawn
+	};
+	class BasicTile
+	{
+	protected:
+		int x;
+		int y;
+
+	public:
+		BasicTile();
+		BasicTile(int x, int y, bool additional = false);
+		void setPosition(int x, int y);
+		virtual int getTypeId() = 0;
+		virtual ~BasicTile();
+	};
+	class Empty : public BasicTile
 	{
 	public:
-		enum e_type
-		{
-			empty = -1,
-			wall,
-			destructibleWall,
-			ladder,
-			spawn
-		};
-
+		Empty(int x, int y);
+		int getTypeId();
+	};
+	class Wall : public BasicTile
+	{
 	private:
-		e_type type;
-		float x;
-		float y;
-
+		bool isDestructible;
 	public:
-		Tile();
-		Tile(float x, float y);
-		void setType(e_type type);
-		void setPosition(float x, float y);
-		e_type getType();
-
+		Wall(int x, int y, bool isDestructible = false);
+		int getTypeId();
+	};
+	class Ladder : public BasicTile
+	{
+	public:
+		Ladder(int x, int y);
+		int getTypeId();
+	};
+	class Spawn : public BasicTile
+	{
+	public:
+		Spawn(int x, int y);
+		int getTypeId();
 	};
 
 private:
 	Level* p_level;
-	std::array<std::array<Tile, HEIGHT_COUNT>, WIDTH_COUNT> tiles;
+	std::array<std::array<BasicTile *, HEIGHT_COUNT>, WIDTH_COUNT> p_tiles;
 	enum
 	{
 		cursorMode,
-		wallMode,
+		simpleWallMode,
 		destructibleWallMode,
 		ladderMode,
 		spawnMode,
