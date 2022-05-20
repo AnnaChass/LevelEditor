@@ -1,6 +1,20 @@
 #include "Level.h"
 #include <Windows.h>
 
+Level::Level(Editor* editor) :
+	graphicsThread(&Level::graphics, this),
+	p_editor(editor)
+{
+	stop = false;
+}
+
+Level::~Level()
+{
+	stop = true;
+	graphicsThread.join();
+	graphicsThread.~thread();
+}
+
 void Level::calculateLines()
 {
 	verticalLines = sf::VertexArray(sf::Lines, (WIDTH_COUNT - 1) * 2);
@@ -53,17 +67,6 @@ void Level::draw()
 	window.display();
 }
 
-Level::Level(Editor* editor) :
-	graphicsThread(&Level::graphics, this),
-	p_editor (editor)
-{
-}
-
-Level::~Level()
-{
-	
-}
-
 void Level::setWall(int x, int y)
 {
 	tiles[x][y].setFillColor(sf::Color::Green);
@@ -88,30 +91,3 @@ void Level::setEmpty(int x, int y)
 {
 	tiles[x][y].setFillColor(sf::Color::White);
 }
-
-/*
-
-Level::Tile::Tile() : shape(sf::Vector2f(CELLSIZE, CELLSIZE))
-{
-	type = empty;
-	//shape.setPosition(sf::Vector2f(0, 0));
-	shape.setFillColor(sf::Color::Green);
-}
-
-Level::Tile::Tile(float x, float y) : shape(sf::Vector2f(CELLSIZE, CELLSIZE))
-{
-	type = empty;
-	shape.setPosition(sf::Vector2f(x, y));
-	shape.setFillColor(sf::Color::Green);
-}
-
-void Level::Tile::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	target.draw(shape);
-}
-
-void Level::Tile::setType(e_type type)
-{
-	this->type = type;
-}
-*/

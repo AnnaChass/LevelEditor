@@ -45,6 +45,7 @@ private:
 	std::array<std::array<sf::RectangleShape, HEIGHT_COUNT>, WIDTH_COUNT> tiles;
 	int mouseX;
 	int mouseY;
+	bool stop;
 
 	void calculateLines();
 	void calculateTiles();

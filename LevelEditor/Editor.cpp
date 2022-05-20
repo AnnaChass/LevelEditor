@@ -33,7 +33,6 @@ Editor::~Editor()
 		for (int j = 0; j < HEIGHT_COUNT; j++)
 		{
 			delete(p_tiles[i][j]);
-			p_level->setEmpty(i, j);
 		}
 	}
 	delete(p_level);
@@ -287,7 +286,7 @@ void Level::graphics()
 	window.create(sf::VideoMode(WIDTH_COUNT * CELLSIZE, HEIGHT_COUNT * CELLSIZE), "Level");
 	calculateLines();
 	calculateTiles();
-	while (window.isOpen())
+	while (window.isOpen() && !stop)
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
