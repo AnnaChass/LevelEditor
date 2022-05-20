@@ -77,8 +77,11 @@ public:
 	Editor();
 	~Editor();
 	bool OnInit() wxOVERRIDE;
+
 	void newLevel();
-	void closeLevel();
+	void loadLevel();
+	void saveLevel();
+
 	void setCursorMode();
 	void setAddWallMode();
 	void setAddDestructibleWallMode();

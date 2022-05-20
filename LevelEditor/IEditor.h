@@ -42,7 +42,6 @@ class Frame : public wxFrame
 		virtual void NewClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void LoadClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void SaveClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void CloseClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void CursorClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void WallClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DestWallClick( wxCommandEvent& event ) { event.Skip(); }

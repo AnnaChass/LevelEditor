@@ -26,6 +26,90 @@ Editor::Editor()
 	Sleep(100);
 }
 
+Editor::~Editor()
+{
+	for (int i = 0; i < WIDTH_COUNT; i++)
+	{
+		for (int j = 0; j < HEIGHT_COUNT; j++)
+		{
+			delete(p_tiles[i][j]);
+			p_level->setEmpty(i, j);
+		}
+	}
+	delete(p_level);
+}
+
+void Editor::newLevel()
+{
+	for (int i = 0; i < WIDTH_COUNT; i++)
+	{
+		for (int j = 0; j < HEIGHT_COUNT; j++)
+		{
+			delete(p_tiles[i][j]);
+			p_tiles[i][j] = new Empty(i, j);
+			p_level->setEmpty(i, j);
+		}
+	}
+}
+
+void Editor::loadLevel()
+{
+	std::fstream file("1.txt");
+	for (int i = 0; i < WIDTH_COUNT; i++)
+	{
+		for (int j = 0; j < HEIGHT_COUNT; j++)
+		{
+			int type;
+			file >> type;
+			switch (type)
+			{
+			case empty:
+				delete(p_tiles[i][j]);
+				p_tiles[i][j] = new Empty(i, j);
+				p_level->setEmpty(i, j);
+				break;
+			case simpleWall:
+				delete(p_tiles[i][j]);
+				p_tiles[i][j] = new Wall(i, j);
+				p_level->setWall(i, j);
+				break;
+			case destructibleWall:
+				delete(p_tiles[i][j]);
+				p_tiles[i][j] = new Wall(i, j, true);
+				p_level->setDestructibleWall(i, j);
+				break;
+			case ladder:
+				delete(p_tiles[i][j]);
+				p_tiles[i][j] = new Ladder(i, j);
+				p_level->setLadder(i, j);
+				break;
+			case spawn:
+				delete(p_tiles[i][j]);
+				p_tiles[i][j] = new Spawn(i, j);
+				p_level->setSpawn(i, j);
+				break;
+			default:
+				break;
+			}
+			
+		}
+	}
+	file.close();
+}
+
+void Editor::saveLevel()
+{
+	std::fstream file("1.txt");
+	for (int i = 0; i < WIDTH_COUNT; i++)
+	{
+		for (int j = 0; j < HEIGHT_COUNT; j++)
+		{
+			file << p_tiles[i][j]->getTypeId() << " ";
+		}
+	}
+	file.close();
+}
+
 void Editor::setAddDestructibleWallMode()
 {
 	curMode = destructibleWallMode;
@@ -49,26 +133,6 @@ void Editor::setCursorMode()
 void Editor::setAddSpawnMode()
 {
 	curMode = spawnMode;
-}
-
-Editor::~Editor()
-{
-	for (int i = 0; i < WIDTH_COUNT; i++)
-	{
-		for (int j = 0; j < HEIGHT_COUNT; j++)
-		{
-			delete(p_tiles[i][j]);
-		}
-	}
-	delete(p_level);
-}
-
-void Editor::newLevel()
-{
-}
-
-void Editor::closeLevel()
-{
 }
 
 void Editor::setAddWallMode()

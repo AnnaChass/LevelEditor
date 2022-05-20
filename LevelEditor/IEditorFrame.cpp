@@ -14,17 +14,12 @@ void IEditorFrame::NewClick( wxCommandEvent& event )
 
 void IEditorFrame::LoadClick( wxCommandEvent& event )
 {
-// TODO: Implement LoadClick
+	p_editor->loadLevel();
 }
 
 void IEditorFrame::SaveClick( wxCommandEvent& event )
 {
-// TODO: Implement SaveClick
-}
-
-void IEditorFrame::CloseClick( wxCommandEvent& event )
-{
-	p_editor->closeLevel();
+	p_editor->saveLevel();
 }
 
 void IEditorFrame::CursorClick( wxCommandEvent& event )
@@ -56,7 +51,6 @@ void IEditorFrame::DeleteClick( wxCommandEvent& event )
 {
 	p_editor->setDeleteItemMode();
 }
-
 
 void IEditorFrame::setEditor(Editor* editor)
 {
