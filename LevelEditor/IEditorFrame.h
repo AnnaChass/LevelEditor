@@ -42,6 +42,8 @@ class IEditorFrame : public Frame
 
 
 
+
+
 };
 
 #endif // __IEditorFrame__

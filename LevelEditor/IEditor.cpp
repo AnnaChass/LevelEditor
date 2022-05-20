@@ -44,13 +44,17 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	AddSubmenuItem->SetBitmap( wxNullBitmap );
 	#endif
 	
+	WallSubmenu = new wxMenu();
+	wxMenuItem* WallSubmenuItem = new wxMenuItem( AddSubmenu, wxID_ANY, wxT("Wall"), wxEmptyString, wxITEM_NORMAL, WallSubmenu );
 	wxMenuItem* WallMenuItem;
-	WallMenuItem = new wxMenuItem( AddSubmenu, wxID_ANY, wxString( wxT("Wall") ) , wxEmptyString, wxITEM_NORMAL );
-	AddSubmenu->Append( WallMenuItem );
+	WallMenuItem = new wxMenuItem( WallSubmenu, wxID_ANY, wxString( wxT("Indestructible") ) , wxEmptyString, wxITEM_NORMAL );
+	WallSubmenu->Append( WallMenuItem );
 	
 	wxMenuItem* DestWallMenuItem;
-	DestWallMenuItem = new wxMenuItem( AddSubmenu, wxID_ANY, wxString( wxT("Destructible wall") ) , wxEmptyString, wxITEM_NORMAL );
-	AddSubmenu->Append( DestWallMenuItem );
+	DestWallMenuItem = new wxMenuItem( WallSubmenu, wxID_ANY, wxString( wxT("Destructible") ) , wxEmptyString, wxITEM_NORMAL );
+	WallSubmenu->Append( DestWallMenuItem );
+	
+	AddSubmenu->Append( WallSubmenuItem );
 	
 	wxMenuItem* LadderMenuItem;
 	LadderMenuItem = new wxMenuItem( AddSubmenu, wxID_ANY, wxString( wxT("Ladder") ) , wxEmptyString, wxITEM_NORMAL );

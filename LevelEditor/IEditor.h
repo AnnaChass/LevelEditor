@@ -36,6 +36,7 @@ class Frame : public wxFrame
 		wxMenu* FileMenu;
 		wxMenu* EditMenu;
 		wxMenu* AddSubmenu;
+		wxMenu* WallSubmenu;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void NewClick( wxCommandEvent& event ) { event.Skip(); }

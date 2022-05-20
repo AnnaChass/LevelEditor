@@ -115,9 +115,9 @@ void Editor::tileClicked(int x, int y)
 				{
 					if (p_tiles[i][j]->getTypeId() == spawn)
 					{
-						delete(p_tiles[x][y]);
-						p_tiles[x][y] = new Empty(x, y);
-						p_level->setEmpty(x, y);
+						delete(p_tiles[i][j]);
+						p_tiles[i][j] = new Empty(i, j);
+						p_level->setEmpty(i, j);
 						isSpawnFound = true;
 						break;
 					}
@@ -127,7 +127,7 @@ void Editor::tileClicked(int x, int y)
 			}
 			// add new spawn tile
 			delete(p_tiles[x][y]);
-			p_tiles[x][y] = new Wall(x, y);
+			p_tiles[x][y] = new Spawn(x, y);
 			p_level->setSpawn(x, y);
 		}
 		break;
