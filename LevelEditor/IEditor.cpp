@@ -70,6 +70,17 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	
 	this->SetMenuBar( Menubar );
 	
+	wxBoxSizer* Sizer;
+	Sizer = new wxBoxSizer( wxVERTICAL );
+	
+	Browse = new wxFilePickerCtrl( this, wxID_ANY, wxEmptyString, wxT("Select a file"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_DEFAULT_STYLE );
+	Browse->Hide();
+	
+	Sizer->Add( Browse, 0, wxALL, 5 );
+	
+	
+	this->SetSizer( Sizer );
+	this->Layout();
 	
 	this->Centre( wxBOTH );
 	
@@ -83,6 +94,7 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	this->Connect( LadderMenuItem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::LadderClick ) );
 	this->Connect( SpawnMenuItem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::SpawnClick ) );
 	this->Connect( DeleteMenuItem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::DeleteClick ) );
+	Browse->Connect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( Frame::BrowseFile ), NULL, this );
 }
 
 Frame::~Frame()
@@ -97,5 +109,6 @@ Frame::~Frame()
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::LadderClick ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::SpawnClick ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::DeleteClick ) );
+	Browse->Disconnect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( Frame::BrowseFile ), NULL, this );
 	
 }

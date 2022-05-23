@@ -51,9 +51,9 @@ void Editor::newLevel()
 	}
 }
 
-void Editor::loadLevel()
+void Editor::loadLevel(std::string filename)
 {
-	std::fstream file("1.txt");
+	std::fstream file(filename);
 	for (int i = 0; i < WIDTH_COUNT; i++)
 	{
 		for (int j = 0; j < HEIGHT_COUNT; j++)
@@ -96,9 +96,9 @@ void Editor::loadLevel()
 	file.close();
 }
 
-void Editor::saveLevel()
+void Editor::saveLevel(std::string filename)
 {
-	std::fstream file("1.txt");
+	std::fstream file(filename);
 	for (int i = 0; i < WIDTH_COUNT; i++)
 	{
 		for (int j = 0; j < HEIGHT_COUNT; j++)

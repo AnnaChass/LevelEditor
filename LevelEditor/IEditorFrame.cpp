@@ -4,7 +4,7 @@ IEditorFrame::IEditorFrame( wxWindow* parent )
 :
 Frame( parent )
 {
-
+	fileMode = nothing;
 }
 
 void IEditorFrame::NewClick( wxCommandEvent& event )
@@ -14,12 +14,15 @@ void IEditorFrame::NewClick( wxCommandEvent& event )
 
 void IEditorFrame::LoadClick( wxCommandEvent& event )
 {
-	p_editor->loadLevel();
+	//Browse->SetWindowStyle(wxFLP_OPEN);
+	setBrowserVisability();
+	fileMode = load;
 }
 
 void IEditorFrame::SaveClick( wxCommandEvent& event )
 {
-	p_editor->saveLevel();
+	setBrowserVisability();
+	fileMode = save;
 }
 
 void IEditorFrame::CursorClick( wxCommandEvent& event )
@@ -52,7 +55,28 @@ void IEditorFrame::DeleteClick( wxCommandEvent& event )
 	p_editor->setDeleteItemMode();
 }
 
+void IEditorFrame::BrowseFile( wxFileDirPickerEvent& event )
+{
+	if (fileMode == load)
+		p_editor->loadLevel(std::string(Browse->GetPath()));
+	else if (fileMode == save)
+		p_editor->saveLevel(std::string(Browse->GetPath()));
+
+	fileMode = nothing;
+	Browse->SetPath("");
+	setBrowserVisability(false);
+}
+
+
 void IEditorFrame::setEditor(Editor* editor)
 {
 	p_editor = editor;
+}
+
+void IEditorFrame::setBrowserVisability(bool isVisible)
+{
+	if (isVisible)
+		Browse->Show();
+	else
+		Browse->Hide();
 }

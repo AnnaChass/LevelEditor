@@ -79,8 +79,8 @@ public:
 	bool OnInit() wxOVERRIDE;
 
 	void newLevel();
-	void loadLevel();
-	void saveLevel();
+	void loadLevel(std::string filename);
+	void saveLevel(std::string filename);
 
 	void setCursorMode();
 	void setAddWallMode();

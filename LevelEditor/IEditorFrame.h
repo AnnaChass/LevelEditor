@@ -22,13 +22,13 @@ class IEditorFrame : public Frame
 		void NewClick( wxCommandEvent& event );
 		void LoadClick( wxCommandEvent& event );
 		void SaveClick( wxCommandEvent& event );
-
 		void CursorClick( wxCommandEvent& event );
 		void WallClick( wxCommandEvent& event );
 		void DestWallClick( wxCommandEvent& event );
 		void LadderClick( wxCommandEvent& event );
 		void SpawnClick( wxCommandEvent& event );
 		void DeleteClick( wxCommandEvent& event );
+		void BrowseFile( wxFileDirPickerEvent& event );
 	public:
 		/** Constructor */
 		IEditorFrame( wxWindow* parent );
@@ -38,6 +38,25 @@ class IEditorFrame : public Frame
 
 	private:
 		Editor* p_editor;
+		enum
+		{
+			nothing,
+			load,
+			save
+		} fileMode;
+
+		void setBrowserVisability(bool isVisible = true);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
