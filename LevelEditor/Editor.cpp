@@ -26,6 +26,12 @@ Editor::Editor()
 	Sleep(100);
 }
 
+void Editor::errorMessage(std::string msg)
+{
+	wxMessageDialog errorMessage(NULL, msg, ERROR_TITLE, wxOK | wxICON_ERROR);
+	errorMessage.ShowModal();
+}
+
 Editor::~Editor()
 {
 	for (int i = 0; i < WIDTH_COUNT; i++)
@@ -53,12 +59,26 @@ void Editor::newLevel()
 
 void Editor::loadLevel(std::string filename)
 {
-	std::fstream file(filename);
+	std::ifstream file(filename);
+	if (!file)
+	{
+		newLevel();
+		errorMessage("The file could not be opened.");
+		return;
+	}
 	for (int i = 0; i < WIDTH_COUNT; i++)
 	{
 		for (int j = 0; j < HEIGHT_COUNT; j++)
 		{
-			int type;
+			if (!file)
+			{
+				newLevel();
+				errorMessage("The file is corrupted!");
+				return;
+			}
+
+			int type = -1;
+			file.sync();
 			file >> type;
 			switch (type)
 			{
@@ -88,9 +108,10 @@ void Editor::loadLevel(std::string filename)
 				p_level->setSpawn(i, j);
 				break;
 			default:
-				break;
+				newLevel();
+				errorMessage("The file is corrupted!");
+				return;
 			}
-			
 		}
 	}
 	file.close();
@@ -98,7 +119,13 @@ void Editor::loadLevel(std::string filename)
 
 void Editor::saveLevel(std::string filename)
 {
-	std::fstream file(filename);
+	std::ofstream file(filename);
+	if (!file)
+	{
+		newLevel();
+		errorMessage("The file could not be opened.");
+		return;
+	}
 	for (int i = 0; i < WIDTH_COUNT; i++)
 	{
 		for (int j = 0; j < HEIGHT_COUNT; j++)
@@ -291,8 +318,6 @@ void Level::graphics()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			//if (event.type == sf::Event::Closed)
-			//	window.close();
 			switch (event.type)
 			{
 			case sf::Event::MouseMoved:
@@ -301,9 +326,7 @@ void Level::graphics()
 				break;
 			case sf::Event::MouseButtonPressed:
 				if (event.mouseButton.button == sf::Mouse::Left)
-				{
 					p_editor->tileClicked(mouseX / CELLSIZE, mouseY / CELLSIZE);
-				}
 				break;
 			default:
 				break;

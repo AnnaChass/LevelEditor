@@ -11,7 +11,7 @@
 
 class Editor : public wxApp
 {
-public:
+private:
 	enum e_type
 	{
 		empty,
@@ -59,8 +59,7 @@ public:
 		Spawn(int x, int y);
 		int getTypeId();
 	};
-
-private:
+	
 	Level* p_level;
 	std::array<std::array<BasicTile *, HEIGHT_COUNT>, WIDTH_COUNT> p_tiles;
 	enum
@@ -72,6 +71,8 @@ private:
 		spawnMode,
 		deleteMode
 	} curMode;
+
+	void errorMessage(std::string msg);
 
 public:
 	Editor();

@@ -22,7 +22,6 @@ class IEditorFrame : public Frame
 		void NewClick( wxCommandEvent& event );
 		void LoadClick( wxCommandEvent& event );
 		void SaveClick( wxCommandEvent& event );
-
 		void CursorClick( wxCommandEvent& event );
 		void WallClick( wxCommandEvent& event );
 		void DestWallClick( wxCommandEvent& event );
@@ -44,6 +43,7 @@ class IEditorFrame : public Frame
 			load,
 			save
 		} fileMode;*/
+
 };
 
 #endif // __IEditorFrame__

@@ -4,7 +4,7 @@
 #include <thread>
 #include <array>
 
-#define CELLSIZE 40
+#define CELLSIZE 45
 
 class Editor;
 
@@ -15,33 +15,16 @@ private:
 	std::thread graphicsThread;
 	Editor* p_editor;
 
+	sf::Image spawnImage;
+	sf::Texture emptyTexture;
+	sf::Texture simpleWallTexture;
+	sf::Texture destructibleWallTexture;
+	sf::Texture ladderTexture;
+	sf::Texture spawnTexture;
+
 	sf::VertexArray verticalLines;
 	sf::VertexArray horizontalLines;
 
-	/*class Tile : public sf::Drawable
-	{
-	public:
-		enum e_type
-		{
-			empty = -1,
-			wall,
-			destWall,
-			ladder,
-			spawn
-		};
-
-	private:
-		sf::RectangleShape shape;
-		e_type type;
-
-	public:
-		Tile();
-		Tile(float x, float y);
-		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-		void setType(e_type type);
-
-	};
-	std::array<std::array<Tile, WIDTH_COUNT>, HEIGHT_COUNT> infoTiles;*/
 	std::array<std::array<sf::RectangleShape, HEIGHT_COUNT>, WIDTH_COUNT> tiles;
 	int mouseX;
 	int mouseY;

@@ -19,8 +19,6 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/filepicker.h>
-#include <wx/sizer.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -39,7 +37,6 @@ class Frame : public wxFrame
 		wxMenu* EditMenu;
 		wxMenu* AddSubmenu;
 		wxMenu* WallSubmenu;
-		wxFilePickerCtrl* Browse;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void NewClick( wxCommandEvent& event ) { event.Skip(); }
@@ -51,12 +48,11 @@ class Frame : public wxFrame
 		virtual void LadderClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void SpawnClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DeleteClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void BrowseFile( wxFileDirPickerEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		Frame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 623,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Frame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 623,301 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~Frame();
 	

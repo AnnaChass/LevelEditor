@@ -123,7 +123,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Anna\Documents\MyApps\SFML-2.5.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,10 +156,11 @@
     <ClInclude Include="Level.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IEditor.fbp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="1.txt" />
+    <Image Include="images\destructibleWall.bmp" />
+    <Image Include="images\empty.bmp" />
+    <Image Include="images\ladder.bmp" />
+    <Image Include="images\simpleWall.bmp" />
+    <Image Include="images\spawn.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

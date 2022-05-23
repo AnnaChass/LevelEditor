@@ -5,6 +5,16 @@ Level::Level(Editor* editor) :
 	graphicsThread(&Level::graphics, this),
 	p_editor(editor)
 {
+	//sf::Image image;
+	//spawnImage.loadFromFile("spawn.bmp");
+	//spawnTexture.loadFromImage(image);
+
+	emptyTexture.loadFromFile("images//empty.bmp");
+	simpleWallTexture.loadFromFile("images//simpleWall.bmp");
+	destructibleWallTexture.loadFromFile("images//destructibleWall.bmp");
+	ladderTexture.loadFromFile("images//ladder.bmp");
+	spawnTexture.loadFromFile("images//spawn.bmp");
+
 	stop = false;
 }
 
@@ -69,25 +79,25 @@ void Level::draw()
 
 void Level::setWall(int x, int y)
 {
-	tiles[x][y].setFillColor(sf::Color::Green);
+	tiles[x][y].setTexture(&simpleWallTexture);
 }
 
 void Level::setDestructibleWall(int x, int y)
 {
-	tiles[x][y].setFillColor(sf::Color::Magenta);
+	tiles[x][y].setTexture(&destructibleWallTexture);
 }
 
 void Level::setLadder(int x, int y)
 {
-	tiles[x][y].setFillColor(sf::Color::Blue);
+	tiles[x][y].setTexture(&ladderTexture);
 }
 
 void Level::setSpawn(int x, int y)
-{	
-	tiles[x][y].setFillColor(sf::Color::Yellow);
+{
+	tiles[x][y].setTexture(&spawnTexture);
 }
 
 void Level::setEmpty(int x, int y)
 {
-	tiles[x][y].setFillColor(sf::Color::White);
+	tiles[x][y].setTexture(&emptyTexture);
 }

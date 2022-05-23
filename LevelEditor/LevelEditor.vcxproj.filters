@@ -46,13 +46,20 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="IEditor.fbp">
+    <Image Include="images\destructibleWall.bmp">
       <Filter>Файлы ресурсов</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="1.txt">
+    </Image>
+    <Image Include="images\empty.bmp">
       <Filter>Файлы ресурсов</Filter>
-    </Text>
+    </Image>
+    <Image Include="images\ladder.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\simpleWall.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\spawn.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>
