@@ -12,18 +12,18 @@ bool Editor::OnInit()
 }
 
 Editor::Editor() 
-{
+{	curMode = cursorMode;
+	p_level = new Level(this);
+	Sleep(100);
+
 	for (int i = 0; i < WIDTH_COUNT; i++)
 	{
 		for (int j = 0; j < HEIGHT_COUNT; j++)
 		{
 			p_tiles[i][j] = new Empty(i, j);
+			p_level->setEmpty(i, j);
 		}
 	}
-
-	curMode = cursorMode;
-	p_level = new Level(this);
-	Sleep(100);
 }
 
 void Editor::errorMessage(std::string msg)

@@ -18,7 +18,6 @@ Level::~Level()
 {
 	stop = true;
 	graphicsThread.join();
-	graphicsThread.~thread();
 }
 
 void Level::calculateLines()
