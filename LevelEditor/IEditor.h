@@ -19,6 +19,8 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
+#include <wx/stattext.h>
+#include <wx/gbsizer.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -37,6 +39,10 @@ class Frame : public wxFrame
 		wxMenu* EditMenu;
 		wxMenu* AddSubmenu;
 		wxMenu* WallSubmenu;
+		wxStaticText* ObjectLabel;
+		wxStaticText* ObjectInfo;
+		wxStaticText* PositionLabel;
+		wxStaticText* PositionInfo;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void NewClick( wxCommandEvent& event ) { event.Skip(); }

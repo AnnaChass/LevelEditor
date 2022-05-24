@@ -4,7 +4,7 @@ IMPLEMENT_APP(Editor)
 
 bool Editor::OnInit()
 {
-	IEditorFrame* p_frame = new IEditorFrame((wxWindow*)NULL);
+	p_frame = new IEditorFrame((wxWindow*)NULL);
 	p_frame->setEditor(this);
 	p_frame->Show();
 	SetTopWindow(p_frame);
@@ -230,6 +230,7 @@ void Editor::tileClicked(int x, int y)
 		}
 		break;
 	case cursorMode:
+		p_frame->setProperties(p_tiles[x][y]->getTypeId(), x, y);
 		break;
 	default:
 		break;

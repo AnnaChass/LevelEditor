@@ -8,10 +8,11 @@
 #include <array>
 #include <map>
 
+class IEditorFrame;
 
 class Editor : public wxApp
 {
-private:
+public:
 	enum e_type
 	{
 		empty,
@@ -20,6 +21,8 @@ private:
 		ladder,
 		spawn
 	};
+
+private:
 	class BasicTile
 	{
 	protected:
@@ -61,6 +64,7 @@ private:
 	};
 	
 	Level* p_level;
+	IEditorFrame* p_frame;
 	std::array<std::array<BasicTile *, HEIGHT_COUNT>, WIDTH_COUNT> p_tiles;
 	enum
 	{

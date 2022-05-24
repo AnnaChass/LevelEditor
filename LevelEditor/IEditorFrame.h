@@ -34,9 +34,17 @@ class IEditorFrame : public Frame
 	//// end generated class members
 
 		void setEditor(Editor* editor);
+		void setProperties(int objectType, int x, int y);
 
 	private:
 		Editor* p_editor;
+
+		void setPropertyVisability(bool isVisible = true);
+
+
+
+
+
 
 };
 

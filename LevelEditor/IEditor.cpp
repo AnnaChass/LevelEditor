@@ -70,6 +70,30 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	
 	this->SetMenuBar( Menubar );
 	
+	wxGridBagSizer* Sizer;
+	Sizer = new wxGridBagSizer( 0, 0 );
+	Sizer->SetFlexibleDirection( wxBOTH );
+	Sizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+	
+	ObjectLabel = new wxStaticText( this, wxID_ANY, wxT("Object:"), wxDefaultPosition, wxDefaultSize, 0 );
+	ObjectLabel->Wrap( -1 );
+	Sizer->Add( ObjectLabel, wxGBPosition( 0, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	ObjectInfo = new wxStaticText( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	ObjectInfo->Wrap( -1 );
+	Sizer->Add( ObjectInfo, wxGBPosition( 0, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	PositionLabel = new wxStaticText( this, wxID_ANY, wxT("Position:"), wxDefaultPosition, wxDefaultSize, 0 );
+	PositionLabel->Wrap( -1 );
+	Sizer->Add( PositionLabel, wxGBPosition( 1, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	PositionInfo = new wxStaticText( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	PositionInfo->Wrap( -1 );
+	Sizer->Add( PositionInfo, wxGBPosition( 1, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	
+	this->SetSizer( Sizer );
+	this->Layout();
 	
 	this->Centre( wxBOTH );
 	
