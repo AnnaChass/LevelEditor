@@ -83,13 +83,22 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	ObjectInfo->Wrap( -1 );
 	Sizer->Add( ObjectInfo, wxGBPosition( 0, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
 	
-	PositionLabel = new wxStaticText( this, wxID_ANY, wxT("Position:"), wxDefaultPosition, wxDefaultSize, 0 );
-	PositionLabel->Wrap( -1 );
-	Sizer->Add( PositionLabel, wxGBPosition( 1, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	PositionXLabel = new wxStaticText( this, wxID_ANY, wxT("Position X:"), wxDefaultPosition, wxDefaultSize, 0 );
+	PositionXLabel->Wrap( -1 );
+	Sizer->Add( PositionXLabel, wxGBPosition( 1, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
 	
-	PositionInfo = new wxStaticText( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	PositionInfo->Wrap( -1 );
-	Sizer->Add( PositionInfo, wxGBPosition( 1, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	PositionXSpin = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 29, 0 );
+	Sizer->Add( PositionXSpin, wxGBPosition( 1, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	PositionYLabel = new wxStaticText( this, wxID_ANY, wxT("Position Y:"), wxDefaultPosition, wxDefaultSize, 0 );
+	PositionYLabel->Wrap( -1 );
+	Sizer->Add( PositionYLabel, wxGBPosition( 2, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	PositionYSpin = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 14, 0 );
+	Sizer->Add( PositionYSpin, wxGBPosition( 2, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	
+	OkButton = new wxButton( this, wxID_ANY, wxT("Submit"), wxDefaultPosition, wxDefaultSize, 0 );
+	Sizer->Add( OkButton, wxGBPosition( 4, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
 	
 	
 	this->SetSizer( Sizer );
@@ -107,6 +116,9 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	this->Connect( LadderMenuItem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::LadderClick ) );
 	this->Connect( SpawnMenuItem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::SpawnClick ) );
 	this->Connect( DeleteMenuItem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::DeleteClick ) );
+	PositionXSpin->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( Frame::PositionXChange ), NULL, this );
+	PositionYSpin->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( Frame::PositionYChange ), NULL, this );
+	OkButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Frame::ChangePropertiesClick ), NULL, this );
 }
 
 Frame::~Frame()
@@ -121,5 +133,8 @@ Frame::~Frame()
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::LadderClick ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::SpawnClick ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Frame::DeleteClick ) );
+	PositionXSpin->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( Frame::PositionXChange ), NULL, this );
+	PositionYSpin->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( Frame::PositionYChange ), NULL, this );
+	OkButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Frame::ChangePropertiesClick ), NULL, this );
 	
 }

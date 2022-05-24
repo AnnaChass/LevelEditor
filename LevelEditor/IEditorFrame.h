@@ -28,6 +28,9 @@ class IEditorFrame : public Frame
 		void LadderClick( wxCommandEvent& event );
 		void SpawnClick( wxCommandEvent& event );
 		void DeleteClick( wxCommandEvent& event );
+		void PositionXChange( wxSpinEvent& event );
+		void PositionYChange( wxSpinEvent& event );
+		void ChangePropertiesClick( wxCommandEvent& event );
 	public:
 		/** Constructor */
 		IEditorFrame( wxWindow* parent );
@@ -40,10 +43,8 @@ class IEditorFrame : public Frame
 		Editor* p_editor;
 
 		void setPropertyVisability(bool isVisible = true);
-
-
-
-
+		int newX;
+		int newY;
 
 
 };

@@ -166,6 +166,46 @@ void Editor::setAddWallMode()
 	curMode = simpleWallMode;
 }
 
+void Editor::changeItemPosition(int newX, int newY)
+{
+	int type = p_tiles[changingX][changingY]->getTypeId();
+
+	delete(p_tiles[changingX][changingY]);
+	p_tiles[changingX][changingY] = new Empty(changingX, changingY);
+	p_level->setEmpty(changingX, changingY);
+
+	int x = (newX > 0) ? newX : changingX;
+	int y = (newY > 0) ? newY : changingY;
+
+	delete(p_tiles[x][y]);
+	switch (type)
+	{
+	case empty:
+		p_tiles[x][y] = new Empty(x, y);
+		p_level->setEmpty(x, y);
+		break;
+	case simpleWall:
+		p_tiles[x][y] = new Wall(x, y);
+		p_level->setWall(x, y);
+		break;
+	case destructibleWall:
+		p_tiles[x][y] = new Wall(x, y, true);
+		p_level->setDestructibleWall(x, y);
+		break;
+	case ladder:
+		p_tiles[x][y] = new Ladder(x, y);
+		p_level->setLadder(x, y);
+		break;
+	case spawn:
+		p_tiles[x][y] = new Spawn(x, y);
+		p_level->setSpawn(x, y);
+		break;
+	}
+
+	changingX = x;
+	changingY = y;
+}
+
 void Editor::tileClicked(int x, int y)
 {
 	switch (curMode)
@@ -230,6 +270,8 @@ void Editor::tileClicked(int x, int y)
 		}
 		break;
 	case cursorMode:
+		changingX = x;
+		changingY = y;
 		p_frame->setProperties(p_tiles[x][y]->getTypeId(), x, y);
 		break;
 	default:

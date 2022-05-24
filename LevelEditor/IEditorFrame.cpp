@@ -4,7 +4,8 @@ IEditorFrame::IEditorFrame( wxWindow* parent )
 :
 Frame( parent )
 {
-	
+	newX = -1;
+	newY = -1;
 }
 
 void IEditorFrame::NewClick( wxCommandEvent& event )
@@ -69,16 +70,29 @@ setPropertyVisability(false);
 p_editor->setDeleteItemMode();
 }
 
+void IEditorFrame::PositionXChange( wxSpinEvent& event )
+{
+	newX = PositionXSpin->GetValue();
+}
+
+void IEditorFrame::PositionYChange( wxSpinEvent& event )
+{
+	newY = PositionYSpin->GetValue();
+}
+
+void IEditorFrame::ChangePropertiesClick( wxCommandEvent& event )
+{
+	p_editor->changeItemPosition(newX, newY);
+	newX = -1;
+	newY = -1;
+}
+
 
 void IEditorFrame::setProperties(int objectType, int x, int y)
 {
-	wxString str;
-	str.append("(");
-	str.append(std::to_string(x));
-	str.append(",");
-	str.append(std::to_string(y));
-	str.append(")");
-	PositionInfo->SetLabelText(str);
+	PositionXSpin->SetValue(x);
+	PositionYSpin->SetValue(y);
+
 	switch(objectType)
 	{
 	case Editor::empty:
@@ -112,14 +126,10 @@ void IEditorFrame::setPropertyVisability(bool isVisible)
 	{
 		ObjectLabel->Show();
 		ObjectInfo->Show();
-		PositionLabel->Show();
-		PositionInfo->Show();
 	}
 	else
 	{
 		ObjectLabel->Hide();
 		ObjectInfo->Hide();
-		PositionLabel->Hide();
-		PositionInfo->Hide();
 	}
 }

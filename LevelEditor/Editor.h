@@ -75,6 +75,8 @@ private:
 		spawnMode,
 		deleteMode
 	} curMode;
+	int changingX;
+	int changingY;
 
 	void errorMessage(std::string msg);
 
@@ -93,6 +95,8 @@ public:
 	void setAddLadderMode();
 	void setAddSpawnMode();
 	void setDeleteItemMode();
+
+	void changeItemPosition(int newX, int newY);
 	
 	void tileClicked(int x, int y);
 };

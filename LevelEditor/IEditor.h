@@ -20,6 +20,8 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/stattext.h>
+#include <wx/spinctrl.h>
+#include <wx/button.h>
 #include <wx/gbsizer.h>
 #include <wx/frame.h>
 
@@ -41,8 +43,11 @@ class Frame : public wxFrame
 		wxMenu* WallSubmenu;
 		wxStaticText* ObjectLabel;
 		wxStaticText* ObjectInfo;
-		wxStaticText* PositionLabel;
-		wxStaticText* PositionInfo;
+		wxStaticText* PositionXLabel;
+		wxSpinCtrl* PositionXSpin;
+		wxStaticText* PositionYLabel;
+		wxSpinCtrl* PositionYSpin;
+		wxButton* OkButton;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void NewClick( wxCommandEvent& event ) { event.Skip(); }
@@ -54,6 +59,9 @@ class Frame : public wxFrame
 		virtual void LadderClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void SpawnClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DeleteClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void PositionXChange( wxSpinEvent& event ) { event.Skip(); }
+		virtual void PositionYChange( wxSpinEvent& event ) { event.Skip(); }
+		virtual void ChangePropertiesClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
