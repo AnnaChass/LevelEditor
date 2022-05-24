@@ -24,6 +24,9 @@ Editor::Editor()
 			p_level->setEmpty(i, j);
 		}
 	}
+
+	changingX = -1;
+	changingY = -1;
 }
 
 void Editor::errorMessage(std::string msg)
@@ -153,6 +156,9 @@ void Editor::setAddLadderMode()
 
 void Editor::setCursorMode()
 {
+	changingX = -1;
+	changingY = -1;
+
 	curMode = cursorMode;
 }
 
@@ -168,6 +174,9 @@ void Editor::setAddWallMode()
 
 void Editor::changeItemPosition(int newX, int newY)
 {
+	if (changingX < 0 || changingY < 0)
+		return;
+
 	int type = p_tiles[changingX][changingY]->getTypeId();
 
 	delete(p_tiles[changingX][changingY]);

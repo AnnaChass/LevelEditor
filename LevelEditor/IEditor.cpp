@@ -70,35 +70,47 @@ Frame::Frame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPo
 	
 	this->SetMenuBar( Menubar );
 	
-	wxGridBagSizer* Sizer;
-	Sizer = new wxGridBagSizer( 0, 0 );
-	Sizer->SetFlexibleDirection( wxBOTH );
-	Sizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+	wxGridSizer* Sizer;
+	Sizer = new wxGridSizer( 0, 2, 0, 0 );
 	
 	ObjectLabel = new wxStaticText( this, wxID_ANY, wxT("Object:"), wxDefaultPosition, wxDefaultSize, 0 );
 	ObjectLabel->Wrap( -1 );
-	Sizer->Add( ObjectLabel, wxGBPosition( 0, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	ObjectLabel->Hide();
+	
+	Sizer->Add( ObjectLabel, 0, wxALL, 5 );
 	
 	ObjectInfo = new wxStaticText( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	ObjectInfo->Wrap( -1 );
-	Sizer->Add( ObjectInfo, wxGBPosition( 0, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	ObjectInfo->Hide();
+	
+	Sizer->Add( ObjectInfo, 0, wxALL, 5 );
 	
 	PositionXLabel = new wxStaticText( this, wxID_ANY, wxT("Position X:"), wxDefaultPosition, wxDefaultSize, 0 );
 	PositionXLabel->Wrap( -1 );
-	Sizer->Add( PositionXLabel, wxGBPosition( 1, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	PositionXLabel->Hide();
+	
+	Sizer->Add( PositionXLabel, 0, wxALL, 5 );
 	
 	PositionXSpin = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 29, 0 );
-	Sizer->Add( PositionXSpin, wxGBPosition( 1, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	PositionXSpin->Hide();
+	
+	Sizer->Add( PositionXSpin, 0, wxALL, 5 );
 	
 	PositionYLabel = new wxStaticText( this, wxID_ANY, wxT("Position Y:"), wxDefaultPosition, wxDefaultSize, 0 );
 	PositionYLabel->Wrap( -1 );
-	Sizer->Add( PositionYLabel, wxGBPosition( 2, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	PositionYLabel->Hide();
+	
+	Sizer->Add( PositionYLabel, 0, wxALL, 5 );
 	
 	PositionYSpin = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 14, 0 );
-	Sizer->Add( PositionYSpin, wxGBPosition( 2, 4 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	PositionYSpin->Hide();
+	
+	Sizer->Add( PositionYSpin, 0, wxALL, 5 );
 	
 	OkButton = new wxButton( this, wxID_ANY, wxT("Submit"), wxDefaultPosition, wxDefaultSize, 0 );
-	Sizer->Add( OkButton, wxGBPosition( 4, 0 ), wxGBSpan( 1, 1 ), wxALL, 5 );
+	OkButton->Hide();
+	
+	Sizer->Add( OkButton, 0, wxALL, 5 );
 	
 	
 	this->SetSizer( Sizer );

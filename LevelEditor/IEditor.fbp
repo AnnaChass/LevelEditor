@@ -44,7 +44,7 @@
             <property name="minimum_size"></property>
             <property name="name">Frame</property>
             <property name="pos"></property>
-            <property name="size">623,301</property>
+            <property name="size">623,215</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title"></property>
@@ -291,25 +291,19 @@
                     </object>
                 </object>
             </object>
-            <object class="wxGridBagSizer" expanded="1">
-                <property name="empty_cell_size"></property>
-                <property name="flexible_direction">wxBOTH</property>
-                <property name="growablecols"></property>
-                <property name="growablerows"></property>
+            <object class="wxGridSizer" expanded="1">
+                <property name="cols">2</property>
                 <property name="hgap">0</property>
                 <property name="minimum_size"></property>
                 <property name="name">Sizer</property>
-                <property name="non_flexible_grow_mode">wxFLEX_GROWMODE_SPECIFIED</property>
                 <property name="permission">none</property>
+                <property name="rows">0</property>
                 <property name="vgap">0</property>
-                <object class="gbsizeritem" expanded="0">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">0</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">0</property>
-                    <property name="rowspan">1</property>
-                    <object class="wxStaticText" expanded="0">
+                    <property name="proportion">0</property>
+                    <object class="wxStaticText" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>
@@ -335,7 +329,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="label">Object:</property>
                         <property name="max_size"></property>
@@ -388,14 +382,11 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="gbsizeritem" expanded="0">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">4</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">0</property>
-                    <property name="rowspan">1</property>
-                    <object class="wxStaticText" expanded="0">
+                    <property name="proportion">0</property>
+                    <object class="wxStaticText" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>
@@ -421,7 +412,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="label"></property>
                         <property name="max_size"></property>
@@ -474,13 +465,10 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="gbsizeritem" expanded="1">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">0</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">1</property>
-                    <property name="rowspan">1</property>
+                    <property name="proportion">0</property>
                     <object class="wxStaticText" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
@@ -507,7 +495,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="label">Position X:</property>
                         <property name="max_size"></property>
@@ -560,13 +548,10 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="gbsizeritem" expanded="1">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">4</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">1</property>
-                    <property name="rowspan">1</property>
+                    <property name="proportion">0</property>
                     <object class="wxSpinCtrl" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
@@ -593,7 +578,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="initial">0</property>
                         <property name="max">29</property>
@@ -651,13 +636,10 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="gbsizeritem" expanded="1">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">0</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">2</property>
-                    <property name="rowspan">1</property>
+                    <property name="proportion">0</property>
                     <object class="wxStaticText" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
@@ -684,7 +666,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="label">Position Y:</property>
                         <property name="max_size"></property>
@@ -737,13 +719,10 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="gbsizeritem" expanded="1">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">4</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">2</property>
-                    <property name="rowspan">1</property>
+                    <property name="proportion">0</property>
                     <object class="wxSpinCtrl" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
@@ -770,7 +749,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="initial">0</property>
                         <property name="max">14</property>
@@ -828,13 +807,10 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="gbsizeritem" expanded="1">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="colspan">1</property>
-                    <property name="column">0</property>
                     <property name="flag">wxALL</property>
-                    <property name="row">4</property>
-                    <property name="rowspan">1</property>
+                    <property name="proportion">0</property>
                     <object class="wxButton" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
@@ -862,7 +838,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="label">Submit</property>
                         <property name="max_size"></property>

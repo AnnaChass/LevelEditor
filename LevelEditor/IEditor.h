@@ -22,7 +22,7 @@
 #include <wx/stattext.h>
 #include <wx/spinctrl.h>
 #include <wx/button.h>
-#include <wx/gbsizer.h>
+#include <wx/sizer.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ class Frame : public wxFrame
 	
 	public:
 		
-		Frame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 623,301 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Frame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 623,215 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~Frame();
 	

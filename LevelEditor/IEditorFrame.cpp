@@ -82,9 +82,9 @@ void IEditorFrame::PositionYChange( wxSpinEvent& event )
 
 void IEditorFrame::ChangePropertiesClick( wxCommandEvent& event )
 {
-	p_editor->changeItemPosition(newX, newY);
-	newX = -1;
-	newY = -1;
+p_editor->changeItemPosition(newX, newY);
+newX = -1;
+newY = -1;
 }
 
 
@@ -126,10 +126,22 @@ void IEditorFrame::setPropertyVisability(bool isVisible)
 	{
 		ObjectLabel->Show();
 		ObjectInfo->Show();
+		PositionXLabel->Show();
+		PositionXSpin->Show();
+		PositionYLabel->Show();
+		PositionYSpin->Show();
+		OkButton->Show();
 	}
 	else
 	{
+		PositionXSpin->SetValue(-1);
+		PositionYSpin->SetValue(-1);
 		ObjectLabel->Hide();
 		ObjectInfo->Hide();
+		PositionXLabel->Hide();
+		PositionXSpin->Hide();
+		PositionYLabel->Hide();
+		PositionYSpin->Hide();
+		OkButton->Hide();
 	}
 }

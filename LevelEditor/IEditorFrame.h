@@ -47,6 +47,9 @@ class IEditorFrame : public Frame
 		int newY;
 
 
+
+
+
 };
 
 #endif // __IEditorFrame__
