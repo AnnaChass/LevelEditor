@@ -162,9 +162,6 @@
     <Image Include="images\simpleWall.bmp" />
     <Image Include="images\spawn.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="IEditor.fbp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
