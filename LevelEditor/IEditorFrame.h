@@ -37,12 +37,6 @@ class IEditorFrame : public Frame
 
 	private:
 		Editor* p_editor;
-		/*enum
-		{
-			nothing,
-			load,
-			save
-		} fileMode;*/
 
 };
 

@@ -14,20 +14,20 @@ void IEditorFrame::NewClick( wxCommandEvent& event )
 
 void IEditorFrame::LoadClick( wxCommandEvent& event )
 {
-wxFileDialog loadDialog(this);
-if (loadDialog.ShowModal() == wxID_CANCEL)
-return;
+	wxFileDialog loadDialog(this);
+	if (loadDialog.ShowModal() == wxID_CANCEL)
+		return;
 
-p_editor->loadLevel(std::string(loadDialog.GetPath()));
+	p_editor->loadLevel(std::string(loadDialog.GetPath()));
 }
 
 void IEditorFrame::SaveClick( wxCommandEvent& event )
 {
-wxFileDialog loadDialog(this, wxEmptyString, wxEmptyString, wxEmptyString, wxEmptyString, wxFD_SAVE);
-if (loadDialog.ShowModal() == wxID_CANCEL)
-return;
+	wxFileDialog loadDialog(this, wxEmptyString, wxEmptyString, wxEmptyString, wxEmptyString, wxFD_SAVE);
+	if (loadDialog.ShowModal() == wxID_CANCEL)
+		return;
 
-p_editor->saveLevel(std::string(loadDialog.GetPath()));
+	p_editor->saveLevel(std::string(loadDialog.GetPath()));
 }
 
 void IEditorFrame::CursorClick( wxCommandEvent& event )
@@ -59,7 +59,6 @@ void IEditorFrame::DeleteClick( wxCommandEvent& event )
 {
 	p_editor->setDeleteItemMode();
 }
-
 
 void IEditorFrame::setEditor(Editor* editor)
 {

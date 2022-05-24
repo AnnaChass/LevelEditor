@@ -5,10 +5,6 @@ Level::Level(Editor* editor) :
 	graphicsThread(&Level::graphics, this),
 	p_editor(editor)
 {
-	//sf::Image image;
-	//spawnImage.loadFromFile("spawn.bmp");
-	//spawnTexture.loadFromImage(image);
-
 	emptyTexture.loadFromFile("images//empty.bmp");
 	simpleWallTexture.loadFromFile("images//simpleWall.bmp");
 	destructibleWallTexture.loadFromFile("images//destructibleWall.bmp");
